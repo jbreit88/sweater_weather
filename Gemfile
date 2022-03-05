@@ -38,6 +38,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'shoulda-matchers'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -45,7 +46,6 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
   gem 'simplecov', require: false
   gem 'webmock'
 end
