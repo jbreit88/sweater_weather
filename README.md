@@ -1,9 +1,8 @@
-![9](https://user-images.githubusercontent.com/69017022/156702159-28111e9c-a39d-4afd-8649-a771df38e004.png)
+![White with Colorful Circle Abstract Logo](https://user-images.githubusercontent.com/88853324/156896066-14e6c3f7-e323-4e0e-b5bc-11975ae5a162.png)
 
-# Mod3 Group Consultancy Project
-#####  (this repo is used with the [Book Club app](https://github.com/Book-Club-Project/book_club_FE))
+# Mod3 Solo Project: Sweater Weather
 
-reference: [Turing documentation](https://backend.turing.edu/module3/projects/consultancy)
+reference: [Project Specs and Overview](https://backend.turing.edu/module3/projects/sweater_weather/)
 
 <details open="open">
   <summary>Table of Contents</summary>
@@ -12,6 +11,8 @@ reference: [Turing documentation](https://backend.turing.edu/module3/projects/co
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#set-up">Set Up</a></li>
+        <li><a href="#versions">Versions</a></li>
+        <li><a href="#gems">Important Gems</a></li>
         <li><a href="#use-of-this-repository">Use of this Repository</a>
           <ul>
             <li>Frontend Server</li>
@@ -24,8 +25,7 @@ reference: [Turing documentation](https://backend.turing.edu/module3/projects/co
       <a href="#project-description">About This Project</a>
       <ul>
         <li><a href="#learning-goals-for-project">Learning Goals for Project</a></li>
-        <li><a href="#versions">Versions</a></li>
-        <li><a href="#important-gems">Important Gems</a></li>
+        
         <li><a href="#database-schema">Database Schema</a></li>
       </ul>
     </li>
@@ -50,59 +50,6 @@ reference: [Turing documentation](https://backend.turing.edu/module3/projects/co
 
 ## Getting Started
 
-### Set Up
-On your local system, open a terminal session to run the following commands:
-1. Clone this repository `$ git clone git@github.com:Book-Club-Project/book_club_BE.git`
-2. Navigate to the newly cloned directory `$ cd book_club_BE`
-3. If bundler is not installed run `$ gem install bundler`
-4. If or after bundler is installed run `$ bundle install` to install the required Gems
-5. If errors occur, check for proper installation and versions of `bundler`, `ruby`, and `rails`
-6. Set up the database locally with `$ rails db:{:drop,:create,:migrate,:seed}`
-7. Open your text editor and check to see that `schema.rb` exists
-8. You may also run the RSpec test suite locally with the command `$ bundle exec rspec` to ensure everything is functioning as expected.
-
-### Use of this Repository
-In order to run this application you need both this Backend Repository and the associated [Frontend Repository](https://github.com/Book-Club-Project/book_club_FE)
-
-**Frontend Server**
-
-For a full explanation to set-up the frontend server, please see the docs [Here](https://github.com/Book-Club-Project/book_club_FE#readme)
-
-On you command line:
-1. Navigate to the local directory where the frontend repo is housed
-2. Start the Frontend server with `$ rails s` and navigate to http://localhost:5000/ in your web browser. Here you are able to interact with the application.
-
-**Backend Server**
-
-On your command line:
-1. Navigate to the local directory where the backend repo is housed
-2. Run `$ rails s` to run the server locally
-3. Open a web browser and navigate to http://localhost:3000/
-4. Here you are able to explore the endpoints exposed by the API!
-
-----------
-
-## Project Description
-
-This is a back-end project designed to explore the fundamentals of exposing and consuming an API in order to develop an app that integrates microservices. Book Club builds community through literature. Users can connect through groups, messaging, and a bountiful resource of books. Functionality is achieved by combining our own database, the Google Books API, and external communication APIs to allow real-time communication, discussions, and recommendations.
-
-## Learning Goals for Project:
-
-Explicit
-- Expose an API
-- Consume an API
-- Use serializers to format JSON responses
-- Implement CircleCI
-- Implement OAuth2
-
-Implicit
-- Project planning
-- Reading/Writing documentation
-- Time Management/Prioritizing Work
-- Break down large project goals into manageable steps
-- Implement agile workflows
-- GitHub workflow and project management tools
-
 ----------
 
 ### Versions
@@ -112,20 +59,48 @@ Implicit
 
 ----------
 
-### Important Gems
+### Gems
 
 - Testing: [rspec-rails](https://github.com/rspec/rspec-rails), [simplecov](https://github.com/simplecov-ruby/simplecov), [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails), [faker](https://github.com/vajradog/faker-rails), [webmock](https://github.com/bblimke/webmock), [vcr](https://github.com/vcr/vcr)
 
-- API: [jsonapi-serializer](https://github.com/fotinakis/jsonapi-serializers), [figaro](https://medium.com/@MinimalGhost/the-figaro-gem-an-easier-way-to-securely-configure-rails-applications-c6f963b7e993)
-
-- User Authentication and Security: [bcrypt](https://github.com/bcrypt-ruby/bcrypt-ruby)
+- API: [jsonapi-serializer](https://github.com/fotinakis/jsonapi-serializers), [figaro](https://medium.com/@MinimalGhost/the-figaro-gem-an-easier-way-to-securely-configure-rails-applications-c6f963b7e993), [faraday](https://github.com/lostisland/faraday)
 
 ----------
 
+### Set Up
+On your local system, open a terminal session to run the following commands:
+1. Clone this repository `$ git clone git@github.com:jbreit88/sweater_weather.git`
+2. Navigate to the newly cloned directory `$ cd sweater_weather`
+3. If bundler is not installed run `$ gem install bundler`
+4. If or after bundler is installed run `$ bundle install` to install the required Gems
+5. If errors occur, check for proper installation and versions of `bundler`, `ruby`, and `rails`
+6. Set up the database locally with `$ rails db:{:drop,:create,:migrate,:seed}`
+7. Open your text editor and check to see that `schema.rb` exists
+8. You may also run the RSpec test suite locally with the command `$ bundle exec rspec` to ensure everything is functioning as expected.
+
+----------
+
+## Project Description
+
+This is a back-end project designed to explore the consumption and combination of data from multiple APIsn in order to expose new functionality to a front-end team.
+
+## Learning Goals for Project:
+
+Explicit
+- Expose an API that aggregates data from multiple external APIs
+- Expose an API that requires an authentication token
+- Expose an API for CRUD functionality
+- Determine completion criteria based on the needs of other developers
+- Research, select, and consume an API based on your needs as a developer
+
+Implicit
+- Project planning
+- Reading/Writing documentation
+- Time Management/Prioritizing Work
+- Break down large project goals into manageable steps
+- GitHub workflow and project management tools
+
 ## Database Schema
-
-![Screen Shot 2022-03-03 at 9 59 31 PM](https://user-images.githubusercontent.com/69017022/156702356-7b0cd2ad-2f71-49b5-8c74-b052b371e7fa.png)
-
 
 ----------
 
