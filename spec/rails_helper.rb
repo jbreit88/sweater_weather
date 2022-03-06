@@ -70,22 +70,30 @@ RSpec.configure do |config|
   end
 
   config.before(:each, :type => :service) do
-    response = File.read('./spec/support/stubbed_api_responses/map_quest_geocoding_search_location_by_city.json')
+    # Stub MapQuest API calls
+    location_response = File.read('./spec/support/stubbed_api_responses/map_quest_geocoding_search_location_by_city.json')
 
-    stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&location=Denver,CO&maxResults=1").to_return(body: response, status: 200)
+    stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&location=Denver,CO&maxResults=1").to_return(body: location_response, status: 200)
 
-    response = File.read('./spec/support/stubbed_api_responses/weather_request_denver_co.json')
+    # Stub Weather Service API calls
+    weather_response = File.read('./spec/support/stubbed_api_responses/weather_request_denver_co.json')
 
-    stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=5d09b3fb9b76f6fbc2f47a363a4cff69&exclude=minutely,alerts&lat=39.7385&lon=-104.9849&units=imperial").to_return(body: response, status: 200)
+    stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=5d09b3fb9b76f6fbc2f47a363a4cff69&exclude=minutely,alerts&lat=39.7385&lon=-104.9849&units=imperial").to_return(body: weather_response, status: 200)
+
+    stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=&exclude=minutely,alerts&lat=39.7385&lon=-104.9849&units=imperial").to_return(body: weather_response, status: 200)
   end
 
   config.before(:each, :type => :facade) do
-    response = File.read('./spec/support/stubbed_api_responses/map_quest_geocoding_search_location_by_city.json')
+    # Stub MapQuest API calls
+    location_response = File.read('./spec/support/stubbed_api_responses/map_quest_geocoding_search_location_by_city.json')
 
-    stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&location=Denver,CO&maxResults=1").to_return(body: response, status: 200)
+    stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&location=Denver,CO&maxResults=1").to_return(body: location_response, status: 200)
 
-    response = File.read('./spec/support/stubbed_api_responses/weather_request_denver_co.json')
+    # Stub Weather Service API calls
+    weather_response = File.read('./spec/support/stubbed_api_responses/weather_request_denver_co.json')
 
-    stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=5d09b3fb9b76f6fbc2f47a363a4cff69&exclude=minutely,alerts&lat=39.7385&lon=-104.9849&units=imperial").to_return(body: response, status: 200)
+    stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=5d09b3fb9b76f6fbc2f47a363a4cff69&exclude=minutely,alerts&lat=39.7385&lon=-104.9849&units=imperial").to_return(body: weather_response, status: 200)
+
+    stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=&exclude=minutely,alerts&lat=39.7385&lon=-104.9849&units=imperial").to_return(body: weather_response, status: 200)
   end
 end
