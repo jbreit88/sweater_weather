@@ -33,6 +33,8 @@ RSpec.describe HourlyWeather do
   let(:weather) { HourlyWeather.new(data) }
 
   it 'exists with attributes' do
+    Time.zone = 'Mountain Time (US & Canada)'
+    
     expect(weather).to be_a HourlyWeather
 
     expect(weather.datetime).to be_a String
