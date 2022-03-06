@@ -64,8 +64,14 @@ RSpec.configure do |config|
 
   # Add WebMock stub requests here
   config.before(:each, :type => :feature) do
-    # quote_response = File.read('./spec/support/stubbed_api_responses/quote_response.json')
+    # response = File.read('./spec/support/stubbed_api_responses/map_quest_geocoding_search_location_by_city.json')
     #
-    # stub_request(:get, "http://localhost:3000/api/v1/quote").to_return(body: quote_response, status: 200)
+    # stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address").to_return(body: quote_response, status: 200)
+  end
+
+  config.before(:each, :type => :service) do
+    response = File.read('./spec/support/stubbed_api_responses/map_quest_geocoding_search_location_by_city.json')
+
+    stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&location=Denver,CO&maxResults=1").to_return(body: response, status: 200)
   end
 end
