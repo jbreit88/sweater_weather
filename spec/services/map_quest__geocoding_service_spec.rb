@@ -4,7 +4,8 @@ RSpec.describe MapQuestGeocodingService, type: :service do
   describe 'class methods' do
     describe 'search_location_by_city' do
       it 'returns a response based on a city/state search query' do
-        response = MapQuestGeocodingService.search_location_by_city('Denver,CO')
+        search = 'Denver,CO'
+        response = MapQuestGeocodingService.search_location_by_city(search)
 
         # Check data structure
         expect(response).to be_a Hash
@@ -24,6 +25,7 @@ RSpec.describe MapQuestGeocodingService, type: :service do
         expect(response[:results][0][:locations][0][:displayLatLng][:lat]).to be_a Float
         expect(response[:results][0][:locations][0][:displayLatLng][:lng]).to be_a Float
 
+        expect(response[:results][0][:providedLocation][:location]).to eq(search)
       end
     end
   end
