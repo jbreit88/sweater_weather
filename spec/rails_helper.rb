@@ -121,5 +121,10 @@ RSpec.configure do |config|
     weather_response = File.read('./spec/support/stubbed_api_responses/weather_request_denver_co.json')
 
     stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=#{ENV['WEATHER_API_KEY']}&exclude=minutely,alerts&lat=39.738453&lon=-104.984853&units=imperial").to_return(body: weather_response, status: 200)
+
+    # Stub Unsplash API calls
+    image_response = File.read('./spec/support/stubbed_api_responses/unsplash_denver_image_search_response.json')
+
+    stub_request(:get, "https://api.unsplash.com/search/photos?client_id=#{ENV['UNSPLASH_ACCESS_KEY']}&page=1&per_page=1&query=denver,co").to_return(body: image_response, status: 200)
   end
 end
