@@ -11,16 +11,6 @@ class Api::V1::ForecastController < ApplicationController
     daily_weather = OpenWeatherFacade.daily_weather_by_coords(location.latitude, location.longitude)
 
     # Pass in all three objects to serializers for a JSON response
-    render json: {
-      data: {
-        id: nil,
-        type: 'forecast',
-        attributes: {
-          current_weather: CurrentWeatherSerializer.format_current_weather(current_weather),
-          hourly_weather: HourlyWeatherSerializer.format_hourly_weather(hourly_weather),
-          daily_weather: DailyWeatherSerializer.format_daily_weather(daily_weather)
-        }
-      }
-    }
+    render json: ForecastSerializer.format_forecast(location, current_weather, hourly_weather, daily_weather)
   end
 end
