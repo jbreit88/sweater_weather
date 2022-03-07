@@ -136,5 +136,10 @@ RSpec.configure do |config|
     image_response = File.read('./spec/support/stubbed_api_responses/unsplash_denver_image_search_response.json')
 
     stub_request(:get, "https://api.unsplash.com/search/photos?client_id=#{ENV['UNSPLASH_ACCESS_KEY']}&page=1&per_page=1&query=denver,co").to_return(body: image_response, status: 200)
+
+    # Stub Open Library Service API calls
+    books_response = File.read('./spec/support/stubbed_api_responses/open_library_book_search_denver_response.json')
+
+    stub_request(:get, "http://openlibrary.org/search.json?q=Denver,CO").to_return(body: books_response, status: 200)
   end
 end
