@@ -90,6 +90,11 @@ RSpec.configure do |config|
     stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=#{ENV['WEATHER_API_KEY']}&exclude=minutely,alerts&lat=39.7385&lon=-104.9849&units=imperial").to_return(body: weather_response, status: 200)
 
     stub_request(:get, "https://api.openweathermap.org/data/2.5/onecall?appid=&exclude=minutely,alerts&lat=39.7385&lon=-104.9849&units=imperial").to_return(body: weather_response, status: 200)
+
+    # Stub Open Library Service API calls
+    books_response = File.read('./spec/support/stubbed_api_responses/open_library_book_search_denver_response.json')
+
+    stub_request(:get, "http://openlibrary.org/search.json?q=denver,co").to_return(body: books_response, status: 200)
   end
 
   config.before(:each, :type => :facade) do
