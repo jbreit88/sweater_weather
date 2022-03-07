@@ -49,8 +49,8 @@ RSpec.describe DailyWeather do
   it 'exists with attributes' do
     expect(weather).to be_a DailyWeather
 
-    expect(weather.datetime).to be_a Time
-    expect(weather.datetime).to eq('2022-03-06 12:00:00 -0700')
+    expect(weather.datetime).to be_a String
+    expect(weather.datetime).to eq('2022-03-06')
 
     expect(weather.sunrise).to be_a Time
     expect(weather.sunrise).to eq('2022-03-06 06:25:35 -0700')
