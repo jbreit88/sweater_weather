@@ -37,5 +37,9 @@ RSpec.describe 'The Backgrounds API', type: :request do
         expect(image[:data][:attributes][:credit]).to have_key(:photographer_profile)
       end
     end
+
+    describe 'sad path' do
+      it 'returns an error message for incorrect params'
+    end
   end
 end
