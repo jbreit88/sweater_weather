@@ -10,6 +10,7 @@ class Api::V1::BookSearchController < ApplicationController
 
       # Use location search to get books
       related_books = OpenLibraryFacade.search_books_by_keyword(location.city_state)
+      # require "pry"; binding.pry
 
       # Pass in all three objects to serializer for a JSON response
       render json: BookSerializer.format_books(related_books, current_weather, location, params[:quantity])

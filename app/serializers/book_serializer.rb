@@ -12,8 +12,8 @@ class BookSerializer
             summary: forecast.conditions,
             temperature: "#{forecast.temp} F"
           },
-          total_books_found: books.count,
-          books: books.first(quantity.to_i).map do |book|
+          total_books_found: books[:total_results],
+          books: books[:books].first(quantity.to_i).map do |book|
             {
               isbn: book.isbn,
               title: book.title,

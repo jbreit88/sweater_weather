@@ -53,7 +53,15 @@ RSpec.describe 'The Book Search API', type: :request do
           expect(book).to have_key(:publisher)
           expect(book[:publisher]).to be_an Array
           expect(book[:publisher][0]).to be_a String
-        end
+        end  
+      end
+
+      it 'works with large numbers too' do
+        get '/api/v1/book-search?location=Denver,CO&quantity=500000'
+
+        books = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to be_successful
       end
     end
 
@@ -74,7 +82,7 @@ RSpec.describe 'The Book Search API', type: :request do
 
           expect(response).to have_http_status(400)
         end
-        
+
         it 'returns a 400 message when quantity is not a number' do
           get '/api/v1/book-search?location=Denver,CO&quantity=three'
 
