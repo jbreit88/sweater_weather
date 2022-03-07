@@ -1,0 +1,18 @@
+{
+    "data": {
+        "type": "image",
+        "id": null,
+        "attributes": {
+            "image": {
+                "image_id": "zSm5JPgNeuc",
+                "description": "woman in white tank top sitting on brown wooden chair",
+                "url": "https://images.unsplash.com/photo-1629163330223-c183571735a1?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDc5Mjh8MHwxfHNlYXJjaHwxfHxkZW52ZXIlMkNjb3xlbnwwfHx8fDE2NDY2MjkwMjI&ixlib=rb-1.2.1&q=85"
+            },
+            "credit": {
+                "original_website": "https://unsplash.com",
+                "photographer": "Taylor Daugherty",
+                "photographer_profile": "https://unsplash.com/@tayloradaugherty"
+            }
+        }
+    }
+}
