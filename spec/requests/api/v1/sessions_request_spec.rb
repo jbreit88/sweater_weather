@@ -61,7 +61,7 @@ RSpec.describe 'The Sessions API' do
 
         post '/api/v1/sessions', headers: headers, params: JSON.generate(login_params)
 
-        expect(response.status).to eq(400)
+        expect(response.status).to eq(404)
         expect(response.body).to match('Email and Password do not match')
       end
     end

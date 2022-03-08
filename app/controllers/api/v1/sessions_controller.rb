@@ -7,7 +7,7 @@ class Api::V1::SessionsController < ApplicationController
       if user && user.authenticate(params[:password])
         render json: UserSerializer.format_user(user), status: 200
       else
-        render_error_400('Email and Password do not match')
+        render_error_404('Email and Password do not match')
       end
     else
       render_error_400('Missing field')
