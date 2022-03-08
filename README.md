@@ -81,7 +81,7 @@ On your local system, open a terminal session to run the following commands:
 
 ## Project Description
 
-This is a back-end project designed to explore the consumption and combination of data from multiple APIsn in order to expose new functionality to a front-end team.
+This is a back-end project designed to explore the consumption and combination of data from multiple APIs in order to expose new functionality to a front-end team.
 
 ## Learning Goals for Project:
 
