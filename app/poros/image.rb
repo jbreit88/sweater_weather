@@ -4,14 +4,20 @@ class Image
               :description,
               :url,
               :photographer,
-              :photographer_profile
+              :photographer_profile,
+              :error
+
 
   def initialize(data)
-    @original_website = 'https://unsplash.com'
-    @image_id = data[:id]
-    @description = data[:alt_description]
-    @url = data[:urls][:full]
-    @photographer = data[:user][:name]
-    @photographer_profile = data[:user][:links][:html]
+    if !data.nil?
+      @original_website = 'https://unsplash.com'
+      @image_id = data[:id]
+      @description = data[:alt_description]
+      @url = data[:urls][:full]
+      @photographer = data[:user][:name]
+      @photographer_profile = data[:user][:links][:html]
+    else
+      @error = 'This is not an image'
+    end
   end
 end
