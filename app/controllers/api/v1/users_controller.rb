@@ -1,7 +1,6 @@
 class Api::V1::UsersController < ApplicationController
 
   def create
-
     new_user = User.create!(user_params)
 
     api_key = new_user.api_keys.create!(token: SecureRandom.hex)
