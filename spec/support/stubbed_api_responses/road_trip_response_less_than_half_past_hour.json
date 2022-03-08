@@ -1,0 +1,15 @@
+{
+    "data": {
+        "id": null,
+        "type": "roadtrip",
+        "attributes": {
+            "start_city": "Denver,CO",
+            "end_city": "Pueblo,CO",
+            "travel_time": "01 hours, 10 minutes",
+            "weather_at_eta": {
+                "temperature": 23.86,
+                "conditions": "light snow"
+            }
+        }
+    }
+}
