@@ -25,8 +25,6 @@ reference: [Project Specs and Overview](https://backend.turing.edu/module3/proje
       <a href="#project-description">About This Project</a>
       <ul>
         <li><a href="#learning-goals-for-project">Learning Goals for Project</a></li>
-        
-        <li><a href="#database-schema">Database Schema</a></li>
       </ul>
     </li>
     <li>
@@ -34,11 +32,12 @@ reference: [Project Specs and Overview](https://backend.turing.edu/module3/proje
       <details>
         <summary>Available Endpoints</summary>
         <ul>
-          <li><a href="#books-endpoints">Books Endpoints</a></li>
-          <li><a href="#quotes-endpoints">Quotes Endpoints</a></li>
-          <li><a href="#user-endpoints">User Endpoints</a></li>
-          <li><a href="#clubs-endpoints">Clubs Endpoints</a></li>
-          <li><a href="#comments-endpoints">Comments Endpoints</a></li>
+          <li><a href="#backgrounds-endpoints">Backgrounds Endpoints</a></li>
+          <li><a href="#book-search-endpoints">Book Search Endpoints</a></li>
+          <li><a href="#forecast-endpoints">Forecast Endpoints</a></li>
+          <li><a href="#road-trip-endpoints">Road Trip Endpoints</a></li>
+          <li><a href="#sessions-endpoints">Sessions Endpoints</a></li>
+          <li><a href="#users-endpoints">Users Endpoints</a></li>
         </ul>
       </details>
     </li>
@@ -50,8 +49,6 @@ reference: [Project Specs and Overview](https://backend.turing.edu/module3/proje
 
 ## Getting Started
 
-----------
-
 ### Versions
 
 - Ruby 2.7.2
@@ -61,9 +58,11 @@ reference: [Project Specs and Overview](https://backend.turing.edu/module3/proje
 
 ### Gems
 
-- Testing: [rspec-rails](https://github.com/rspec/rspec-rails), [simplecov](https://github.com/simplecov-ruby/simplecov), [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails), [faker](https://github.com/vajradog/faker-rails), [webmock](https://github.com/bblimke/webmock), [vcr](https://github.com/vcr/vcr)
+- Testing: [rspec-rails](https://github.com/rspec/rspec-rails), [simplecov](https://github.com/simplecov-ruby/simplecov), [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails), [faker](https://github.com/vajradog/faker-rails), [webmock](https://github.com/bblimke/webmock), [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers)
 
 - API: [jsonapi-serializer](https://github.com/fotinakis/jsonapi-serializers), [figaro](https://medium.com/@MinimalGhost/the-figaro-gem-an-easier-way-to-securely-configure-rails-applications-c6f963b7e993), [faraday](https://github.com/lostisland/faraday)
+
+- User Authentication: [bcrypt](https://github.com/bcrypt-ruby/bcrypt-ruby)
 
 ----------
 
@@ -100,110 +99,94 @@ Implicit
 - Break down large project goals into manageable steps
 - GitHub workflow and project management tools
 
-## Database Schema
-
 ----------
 
 ## APIs
-Available endpoints
+Available endpoints (See the [Postman Collection](https://www.getpostman.com/collections/4eed83f8f6f286f882a0))
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/918e865de1f64267f728?action=collection%2Fimport)
+###  Backgrounds endpoints
 
-### Books endpoints
+| http verb | name | description | example |
+| --- | --- | --- | --- |
+| GET | /backgrounds | Returns information to call an image based on keyword search | /api/v1/backgrounds?location={{city,state}} |
 
-| http verb | name | data type | description | example |
-| --- | --- | --- | --- | --- |
-| GET | /books/:id | Integer | Returns details of a specific book based on the books id | /api/v1/books/{{book id}} |
-| GET | /books/search | String | Returns a list of books with the title containing the search parameter | /api/v1/books/search?title={{search parameter}} |
-
-Data sourced from [Google Books API](https://developers.google.com/books/docs/v1/using)
+Data sourced from the [UnSplash Image API](https://unsplash.com/documentation)
 
 <details>
-    <summary> JSON response examples </summary>
+    <summary> JSON response example </summary>
 
-Single book by id:
-```
+Single image by keyword:
+```json
   {
     "data": {
-        "id": "ZV9DDwAAQBAJ",
-        "type": "book",
+        "type": "image",
+        "id": null,
         "attributes": {
-            "title": "Pride",
-            "authors": [
-                "Ibi Zoboi"
-            ],
-            "genres": [
-                "Young Adult Fiction / Diversity & Multicultural",
-                "Young Adult Fiction / Social Themes / Class Differences",
-                "Young Adult Fiction / Romance / Contemporary"
-            ],
-            "description": "<p>In a timely update of Jane Austen's Pride and Prejudice, National Book Award finalist Ibi Zoboi skillfully balances cultural identity, class, and gentrification against the heady magic of first love in her vibrant reimagining of this beloved classic. A smart, funny, gorgeous retelling starring all characters of color. </p><p>Zuri Benitez has pride. Brooklyn pride, family pride, and pride in her Afro-Latino roots. But pride might not be enough to save her rapidly gentrifying neighborhood from becoming unrecognizable. </p><p>When the wealthy Darcy family moves in across the street, Zuri wants nothing to do with their two teenage sons, even as her older sister, Janae, starts to fall for the charming Ainsley. She especially can’t stand the judgmental and arrogant Darius. Yet as Zuri and Darius are forced to find common ground, their initial dislike shifts into an unexpected understanding.</p><p>But with four wild sisters pulling her in different directions, cute boy Warren vying for her attention, and college applications hovering on the horizon, Zuri fights to find her place in Bushwick’s changing landscape, or lose it all.</p><p>\"Zoboi skillfully depicts the vicissitudes of teenage relationships, and Zuri’s outsize pride and poetic sensibility make her a sympathetic teenager in a contemporary story about race, gentrification, and young love.\" (Publishers Weekly, \"An Anti-Racist Children's and YA Reading List\")</p>",
-            "rating": 4
+            "image": {
+                "image_id": "zSm5JPgNeuc",
+                "description": "woman in white tank top sitting on brown wooden chair",
+                "url": "https://images.unsplash.com/photo-1629163330223-c183571735a1?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDc5Mjh8MHwxfHNlYXJjaHwxfHxkZW52ZXIlMkNjb3xlbnwwfHx8fDE2NDY3NjE1NTA&ixlib=rb-1.2.1&q=85"
+            },
+            "credit": {
+                "original_website": "https://unsplash.com",
+                "photographer": "Taylor Daugherty",
+                "photographer_profile": "https://unsplash.com/@tayloradaugherty"
+            }
         }
     }
 }
 
 ```
-Books by search example used ("Pride"):
-```
-{
-    "data": [
-        {
-            "id": "ZV9DDwAAQBAJ",
-            "type": "book",
-            "attributes": {
-                "title": "Pride",
-                "authors": [
-                    "Ibi Zoboi"
-                ],
-                "genres": [
-                    "Young Adult Fiction"
-                ],
-                "description": "Pride and Prejudice gets remixed in this smart, funny, gorgeous retelling of the classic, starring all characters of color, from Ibi Zoboi, National Book Award finalist and author of American Street. Zuri Benitez has pride. Brooklyn pride, family pride, and pride in her Afro-Latino roots. But pride might not be enough to save her rapidly gentrifying neighborhood from becoming unrecognizable. When the wealthy Darcy family moves in across the street, Zuri wants nothing to do with their two teenage sons, even as her older sister, Janae, starts to fall for the charming Ainsley. She especially can’t stand the judgmental and arrogant Darius. Yet as Zuri and Darius are forced to find common ground, their initial dislike shifts into an unexpected understanding. But with four wild sisters pulling her in different directions, cute boy Warren vying for her attention, and college applications hovering on the horizon, Zuri fights to find her place in Bushwick’s changing landscape, or lose it all. In a timely update of Jane Austen's Pride and Prejudice, critically acclaimed author Ibi Zoboi skillfully balances cultural identity, class, and gentrification against the heady magic of first love in her vibrant reimagining of this beloved classic.",
-                "rating": 4
-            }
-        },
-        {
-            "id": "1JMsEAAAQBAJ",
-            "type": "book",
-            "attributes": {
-                "title": "The Pride Omnibus",
-                "authors": [
-                    "Joe Glass"
-                ],
-                "genres": [
-                    "Comics & Graphic Novels"
-                ],
-                "description": "Joe Glass's The Pride in a full omnibus trade paperback, collecting volumes 1 and 2 as well as the collection of self-contained stories, The Pride Adventures! In The Pride, FabMan is sick of being seen as a joke. Tired of the LGBTQ+ community being seen as inferior to straight heroes, he thinks it's about damn time he did something about it. Bringing together some of the world's greatest LGBTQ+ superheroes, the Pride is born to protect the world and fight prejudice, misrepresentation and injustice--not to mention a pesky supervillain or two. The Pride Adventures brings a whole host of extra, self-contained stories and adventures starring the heroes of the Pride! See the team members face down crazed shooters, invasions, and even a sixty-foot-tall drag queen! Featuring a slew of incredible artistic talent, plus stories from writers Mike Garley, Sina Grace and PJ Montgomery too! Follow the LGBTQ+ heroes into whole new stories and meet even more characters in the world of The Pride! Join the Pride as they work to change the world and show just what they can do! Collects the original digital series The Pride and The Pride Adventures in print for the first time. \"[F]or readers hungry for queer superheroes. Joe Glass' The Pride introduces a superhero universe built on LGBTQ+ inclusion, following a team that is explicitly created to show the range of the queer experience. The Pride features superheroes who are gay, lesbian, bi, trans, non-binary, and children of gay parents. Glass blends modern queer issues with classic superhero storytelling to tell narratives that classic superhero comics haven't touched. . . . The Pride excels at using queer struggle and joy to show a different side of the superhero genre.\"--AV Club \"I highly recommend this smart, charming, wonderful book to anyone who likes good comics. It's absolutely a pleasure to read and a clear labor of love.\"--Gail Simone, Batgirl, Leaving Megalopolis, Clean Room \"Old-school and progressive at the same time. Classic, high-energy superhero action that gives the queer community the heroes they've always deserved.\"--Steve Orlando, Midnighter, Virgil \"The Pride is the modern, inclusive, and compelling superhero epic the world needs today.\"--Alex Segura, co-writer of The Black Ghost and author of the acclaimed Pete Fernandez Miami Mystery novel series.",
-                "rating": 3
-            }
-        },
-}
-```
 
 </details>
 
 
-### Quotes endpoints
+### Book Search endpoints
 
-| http verb | name | data type | description | example |
-| --- | --- | --- | --- | --- |
-| GET | /quote | String | Returns a random literature quote | /api/v1/quote |
+| http verb | name | description | example |
+| --- | --- | --- | --- |
+| GET | /book-search | Returns data for a specified number of books related to the keyword search. | /api/v1/book-search?location={{query_string}}&quantity={{integer}} |
 
-Data sourced from [Quote API](https://www.quotes.net/quotes_api.php)
+Data sourced from the [Open Library API](https://openlibrary.org/developers/api)
 
 <details>
   <summary> JSON response examples </summary>
 
-Random quote:
-```
+Book information:
+```json
 {
     "data": {
         "id": null,
-        "type": "quote",
+        "type": "books",
         "attributes": {
-            "quote": "You are who you are, and no one can change that. So be yourself, because no one can do it better.",
-            "author": "Meylin D. Bojorge"
+            "destination": "denver,co",
+            "forecast": {
+                "summary": "clear sky",
+                "temperature": "36.9 F"
+            },
+            "total_books_found": 41867,
+            "books": [
+                {
+                    "isbn": [
+                        "9780762507849",
+                        "0762507845"
+                    ],
+                    "title": "Denver, Co",
+                    "publisher": [
+                        "Universal Map Enterprises"
+                    ]
+                },
+                {
+                    "isbn": [
+                        "0883183668",
+                        "9780883183663"
+                    ],
+                    "title": "Photovoltaic safety, Denver, CO, 1988",
+                    "publisher": [
+                        "American Institute of Physics"
+                    ]
+                }
+            ]
         }
     }
 }
@@ -213,324 +196,249 @@ Random quote:
 </details>
 
 
-### User endpoints
+### Forecast endpoints
 
-| http verb | name | data type | description | example |
-| --- | --- | --- | --- | --- |
-| GET | /users | String | Returns all users | /api/v1/users |
-| GET | /users/:id | Integer | Returns a single user based on id | /api/v1/users/{{users id}} |
-| GET | /users/:id/clubs | String | Returns all clubs that a specific user belongs to | /api/v1/users/{{user_id}}/clubs |
-| PATCH/PUT | /users/:id | | Edits a single user based on id | /api/v1/comments/{{user_id}} |
-| DELETE | /users/:id | | Deletes a single user based on id | /api/v1/comments/{{user_id}} |
+| http verb | name | description | example |
+| --- | --- | --- | --- |
+| GET | /forecast | String | Returns data for the current/daily/hourly weather at a specified location. | /api/v1/forecast?location={{city,state}} |
 
 <details>
   <summary> JSON response examples </summary>
 
-All users:
-```
-{
-    "data": [
-        {
-            "id": "1",
-            "type": "user",
-            "attributes": {
-                "username": "1",
-                "email": "1@mail.com"
-            }
-        },
-        {
-            "id": "2",
-            "type": "user",
-            "attributes": {
-                "username": "2",
-                "email": "2@mail.com"
-            }
-        },
-        {
-            "id": "3",
-            "type": "user",
-            "attributes": {
-                "username": "3",
-                "email": "3@mail.com"
-            }
-        },
-        {
-            "id": "4",
-            "type": "user",
-            "attributes": {
-                "username": "4",
-                "email": "4@mail.com"
-            }
-        }
-    ]
-}
-```
-Single user by id
-```
+Forecast:
+```json
 {
     "data": {
-        "id": "1",
-        "type": "user",
+        "id": null,
+        "type": "forecast",
         "attributes": {
-            "username": "1",
-            "email": "1@mail.com"
+            "current_weather": {
+                "data": {
+                    "datetime": "2022-03-08T12:17:49.000-07:00",
+                    "sunrise": "2022-03-08T06:22:28.000-07:00",
+                    "sunset": "2022-03-08T17:59:10.000-07:00",
+                    "temp": 36.03,
+                    "feels_like": 32.74,
+                    "humidity": 29,
+                    "uvi": 3.95,
+                    "visibility": 10000,
+                    "conditions": "clear sky",
+                    "icon": "01d"
+                }
+            },
+            "hourly_weather": {
+                "data": [
+                    {
+                        "time": "12:00:00",
+                        "temp": 36.03,
+                        "conditions": "clear sky",
+                        "icon": "01d"
+                    },
+                    {
+                        "time": "13:00:00",
+                        "temp": 35.6,
+                        "conditions": "clear sky",
+                        "icon": "01d"
+                    },
+                    {
+                        "time": "14:00:00",
+                        "temp": 35.58,
+                        "conditions": "clear sky",
+                        "icon": "01d"
+                    },
+                    {
+                        "time": "15:00:00",
+                        "temp": 35.69,
+                        "conditions": "clear sky",
+                        "icon": "01d"
+                    },
+                    {
+                        "time": "16:00:00",
+                        "temp": 35.55,
+                        "conditions": "clear sky",
+                        "icon": "01d"
+                    },
+                    {
+                        "time": "17:00:00",
+                        "temp": 34.07,
+                        "conditions": "clear sky",
+                        "icon": "01d"
+                    },
+                    {
+                        "time": "18:00:00",
+                        "temp": 31.26,
+                        "conditions": "clear sky",
+                        "icon": "01n"
+                    },
+                    {
+                        "time": "19:00:00",
+                        "temp": 30.36,
+                        "conditions": "clear sky",
+                        "icon": "01n"
+                    }
+                ]
+            },
+            "daily_weather": {
+                "data": [
+                    {
+                        "date": "2022-03-08",
+                        "sunrise": "2022-03-08T06:22:28.000-07:00",
+                        "sunset": "2022-03-08T17:59:10.000-07:00",
+                        "max_temp": 36.03,
+                        "min_temp": 20.25,
+                        "conditions": "clear sky",
+                        "icon": "01d"
+                    },
+                    {
+                        "date": "2022-03-09",
+                        "sunrise": "2022-03-09T06:20:54.000-07:00",
+                        "sunset": "2022-03-09T18:00:13.000-07:00",
+                        "max_temp": 28.31,
+                        "min_temp": 16.97,
+                        "conditions": "light snow",
+                        "icon": "13d"
+                    },
+                    {
+                        "date": "2022-03-10",
+                        "sunrise": "2022-03-10T06:19:20.000-07:00",
+                        "sunset": "2022-03-10T18:01:16.000-07:00",
+                        "max_temp": 24.75,
+                        "min_temp": 14.38,
+                        "conditions": "snow",
+                        "icon": "13d"
+                    },
+                    {
+                        "date": "2022-03-11",
+                        "sunrise": "2022-03-11T06:17:45.000-07:00",
+                        "sunset": "2022-03-11T18:02:18.000-07:00",
+                        "max_temp": 33.84,
+                        "min_temp": 14.29,
+                        "conditions": "clear sky",
+                        "icon": "01d"
+                    },
+                    {
+                        "date": "2022-03-12",
+                        "sunrise": "2022-03-12T06:16:09.000-07:00",
+                        "sunset": "2022-03-12T18:03:20.000-07:00",
+                        "max_temp": 53.56,
+                        "min_temp": 27.77,
+                        "conditions": "clear sky",
+                        "icon": "01d"
+                    }
+                ]
+            }
         }
     }
 }
 ```
-All of a specific user's association with clubs:
-```
-{
-    "data": [
-        {
-            "id": "1",
-            "type": "club",
-            "attributes": {
-                "name": "Cool Cats",
-                "host_id": 1,
-                "book_id": 3
-            }
-        }
-    ]
-}
-```
+
 </details>
 
+### Road Trip endpoints
+__Users of the road trip endpoints must provide an API key in the body of their request.__ For information on how to obtain a key, please see the <a href="#users-endpoints">users endpoints</a> section below.
 
-### Clubs endpoints
-
-| http verb | name | data type | description | example |
-| --- | --- | --- | --- | --- |
-| GET | /clubs | String | Returns all clubs | /api/v1/clubs |
-| GET | /clubs/:id | Integer | Returns a single club based on id | /api/v1/clubs/{{club_id}} |
-| GET | /clubs/:id/users | String | Returns all users belonging to a specific club | /api/v1/clubs/{{club_id}}/users |
-| GET | /clubs/:id/comments | String | Returns all comments belonging to a specific club | /api/v1/clubs/{{club_id}}/comments |
-| PATCH/PUT | /clubs/:id| | Edits a specific club's data | /api/v1/clubs/{{club_id}} |
-| DELETE | /clubs/:id| | Deletes a specific club's data | /api/v1/clubs/{{club_id}} |
-
+| http verb | name | description | example |
+| --- | --- | --- | --- |
+| POST | /road_trip | Returns information about road trip time and weather at destination location at time of arrival | /api/v1/road_trip |
 
 <details>
-  <summary> JSON response examples </summary>
+  <summary> JSON request body and response examples </summary>
 
-All clubs:
+Road Trip Request Body:
+```json
+  {
+    "origin": "Denver,CO",
+    "destination": "Pueblo,CO",
+    "api_key": "4c68dedc001ebef636be637a61fbcac7"
+  }
 ```
-{
-    "data": [
-        {
-            "id": "1",
-            "type": "club",
-            "attributes": {
-                "name": "Cool Cats",
-                "host_id": 1,
-                "book_id": 3
-            }
-        },
-        {
-            "id": "2",
-            "type": "club",
-            "attributes": {
-                "name": "Turing Nerds",
-                "host_id": 2,
-                "book_id": 6
-            }
-        },
-        {
-            "id": "3",
-            "type": "club",
-            "attributes": {
-                "name": "Sherlock Homies",
-                "host_id": 3,
-                "book_id": 7
-            }
-        }
-    ]
-}
-```
-Single club by id:
-```
+  
+Road Trip Response:
+```json
 {
     "data": {
-        "id": "1",
-        "type": "club",
+        "id": null,
+        "type": "roadtrip",
         "attributes": {
-            "name": "Cool Cats",
-            "host_id": 1,
-            "book_id": 3
+            "start_city": "Denver,CO",
+            "end_city": "Pueblo,CO",
+            "travel_time": "01 hours, 45 minutes",
+            "weather_at_eta": {
+                "temperature": 38.53,
+                "conditions": "clear sky"
+            }
         }
     }
 }
 ```
-A specific club's users:
-```
-{
-    "data": [
-        {
-            "id": "1",
-            "type": "user",
-            "attributes": {
-                "username": "1",
-                "email": "1@mail.com"
-            }
-        },
-        {
-            "id": "2",
-            "type": "user",
-            "attributes": {
-                "username": "2",
-                "email": "2@mail.com"
-            }
-        },
-        {
-            "id": "3",
-            "type": "user",
-            "attributes": {
-                "username": "3",
-                "email": "3@mail.com"
-            }
-        },
-        {
-            "id": "4",
-            "type": "user",
-            "attributes": {
-                "username": "4",
-                "email": "4@mail.com"
-            }
-        }
-    ]
-}
-```
-A specific club's comments:
-```
-{
-    "data": [
-        {
-            "id": "1",
-            "type": "comment",
-            "attributes": {
-                "title": "Hello",
-                "body": "Blah",
-                "user_id": 1,
-                "club_id": 1
-            }
-        },
-        {
-            "id": "2",
-            "type": "comment",
-            "attributes": {
-                "title": "Comments",
-                "body": "Blah Blah",
-                "user_id": 2,
-                "club_id": 1
-            }
-        },
-        {
-            "id": "3",
-            "type": "comment",
-            "attributes": {
-                "title": "Coolio",
-                "body": "Blah Blah Blah",
-                "user_id": 3,
-                "club_id": 1
-            }
-        },
-        {
-            "id": "4",
-            "type": "comment",
-            "attributes": {
-                "title": "Goodbye",
-                "body": "Blah Blah Blah Blah",
-                "user_id": 4,
-                "club_id": 1
-            }
-        }
-    ]
-}
-```
+
 </details>
 
 
-### Comments endpoints
+### Sessions endpoints
 
 | http verb | name | data type | description | example |
 | --- | --- | --- | --- | --- |
-| GET | /comments | String | Returns all comments | /api/v1/comments |
-| POST | /comments | String | Creates a new comment |  /api/v1/comments |
-| PATCH/PUT | /comments/:id | | Returns a single comment based on id | /api/v1/comments/{{comment_id}} |
-| DELETE | /comments/:id |  | Deletes a comment | /api/v1/comments/{{comment_id}} |
-
+| POST | /sessions | String | Logs a registered user in. | /api/v1/sessions |
 
 <details>
-  <summary> JSON response examples </summary>
+  <summary> JSON request body and response examples </summary>
 
-All comments:
+Login User Request Body:
+```json
+  {
+    "email": "whatever@example.com",
+    "password": "password"
+  }
 ```
+  
+Login User Response:
+```json
 {
-    "data": [
-        {
-            "id": "1",
-            "type": "comment",
-            "attributes": {
-                "title": "Hello",
-                "body": "Blah",
-                "user_id": 1,
-                "club_id": 1
-            }
-        },
-        {
-            "id": "2",
-            "type": "comment",
-            "attributes": {
-                "title": "Comments",
-                "body": "Blah Blah",
-                "user_id": 2,
-                "club_id": 1
-            }
-        },
-        {
-            "id": "3",
-            "type": "comment",
-            "attributes": {
-                "title": "Coolio",
-                "body": "Blah Blah Blah",
-                "user_id": 3,
-                "club_id": 1
-            }
-        },
-        {
-            "id": "4",
-            "type": "comment",
-            "attributes": {
-                "title": "Goodbye",
-                "body": "Blah Blah Blah Blah",
-                "user_id": 4,
-                "club_id": 1
-            }
-        },
-        {
-            "id": "5",
-            "type": "comment",
-            "attributes": {
-                "title": "Goodbye",
-                "body": "Blah Blah Blah Blah",
-                "user_id": 4,
-                "club_id": 2
-            }
-        },
-        {
-            "id": "6",
-            "type": "comment",
-            "attributes": {
-                "title": "Goodbye",
-                "body": "Blah Blah Blah Blah",
-                "user_id": 4,
-                "club_id": 3
-            }
+    "data": {
+        "id": 1,
+        "type": "users",
+        "attributes": {
+            "email": "whatever@example.com",
+            "api_keys": "4c68dedc001ebef636be637a61fbcac7"
         }
-    ]
+    }
 }
 ```
 </details>
 
+### Users endpoints
+
+| http verb | name | data type | description | example |
+| --- | --- | --- | --- | --- |
+| POST | /users | String | Registers a new user. Requires a unique email. | /api/v1/users |
+
+<details>
+  <summary> JSON request body and response examples </summary>
+
+Register User Request Body:
+```json
+  {
+    "email": "whaver@example.com",
+    "password": "password",
+    "password_confirmation": "password"
+  }
+```
+  
+Register User Response:
+```json
+{
+    "data": {
+        "id": 2,
+        "type": "users",
+        "attributes": {
+            "email": "whatever@example.com",
+            "api_keys": {{api key generated on user registration}}
+        }
+    }
+}
+```
+</details>
 
 ----------
 
@@ -543,18 +451,8 @@ All comments:
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <!-- Arnaldo -->
-    <td align="center"><a href="https://github.com/arnaldoaparicio"><img src="https://avatars.githubusercontent.com/u/88012780?v=4" width="100px;" alt=""/><br /><sub><b>Arnaldo (he/him)</b></sub></a><br /><a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=arnaldoaparicio" title="Code">💻</a> <a href="#ideas-arnaldoaparicio" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=arnaldoaparicio" title="Tests">⚠️</a> <a href="https://github.com/Book-Club-Project/book_club_BE/pulls?q=is%3Apr+reviewed-by%3Ajarnaldoaparicio" title="Reviewed Pull Requests">👀</a></td>
-    <!-- Eric -->
-    <td align="center"><a href="https://github.com/echon006"><img src="https://avatars.githubusercontent.com/u/89038271?v=4" width="100px;" alt=""/><br /><sub><b>Eric (he/him)</b></sub></a><br /><a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=echon006" title="Code">💻</a> <a href="#ideas-echon006" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=echon006" title="Tests">⚠️</a> <a href="https://github.com/Book-Club-Project/book_club_BE/pulls?q=is%3Apr+reviewed-by%3Ajechon006" title="Reviewed Pull Requests">👀</a></td>
-    <!-- Mallory -->
-    <td align="center"><a href="https://github.com/Malllll12"><img src="https://user-images.githubusercontent.com/87088092/155652176-cb2263b4-550c-4a80-b38c-519308bd166f.png" width="100px;" alt=""/><br /><sub><b>Mallory (she/her)</b></sub></a><br /><a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=Malllll12" title="Code">💻</a> <a href="#ideas-Malllll12" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=Malllll12" title="Tests">⚠️</a> <a href="https://github.com/Book-Club-Project/book_club_BE/pulls?q=is%3Apr+reviewed-by%3AMalllll12" title="Reviewed Pull Requests">👀</a></td>
-    <!-- Sierra -->
-     <td align="center"><a href="https://github.com/Sierra-T-9598"><img src="https://user-images.githubusercontent.com/87088092/155652453-38a801c4-1243-46ce-a42f-b8416cff0423.png" width="100px;" alt=""/><br /><sub><b>Sierra (she/her)</b></sub></a><br /><a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=Sierra-T-9598" title="Code">💻</a> <a href="#ideas-Sierra-T-9598" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=Sierra-T-9598" title="Tests">⚠️</a> <a href="https://github.com/Book-Club-Project/book_club_BE/pulls?q=is%3Apr+reviewed-by%3ASierra-T-9598" title="Reviewed Pull Requests">👀</a></td>
     <!-- Brad -->
-     <td align="center"><a href="https://github.com/jbreit88"><img src="https://avatars.githubusercontent.com/u/88853324?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brad (he/him)</b></sub></a><br /><a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=jbreit88" title="Code">💻</a> <a href="#ideas-jbreit88" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=jbreit88" title="Tests">⚠️</a> <a href="https://github.com/Book-Club-Project/book_club_BE/pulls?q=is%3Apr+reviewed-by%3Ajbreit88" title="Reviewed Pull Requests">👀</a></td>
-    <!-- Devin -->
-    <td align="center"><a href="https://github.com/devin-p-lay"><img src="https://avatars.githubusercontent.com/u/87088092?v=4" width="100px;" alt=""/><br /><sub><b>Devin (he/him)</b></sub></a><br /><a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=devin-p-lay" title="Code">💻</a> <a href="#ideas-devin-p-lay" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Book-Club-Project/book_club_BE/commits?author=devin-p-lay" title="Tests">⚠️</a> <a href="https://github.com/Book-Club-Project/book_club_BE/pulls?q=is%3Apr+reviewed-by%3Ajdevin-p-lay" title="Reviewed Pull Requests">👀</a></td>
+     <td align="center"><a href="https://github.com/jbreit88"><img src="https://avatars.githubusercontent.com/u/88853324?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brad (he/him)</b></sub></a><br /><a href="https://github.com/jbreit88/sweater_weather/commits?author=jbreit88" title="Code">💻</a> <a href="#ideas-jbreit88" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/jbreit88/sweater_weather/commits?author=jbreit88" title="Tests">⚠️</a> <a href="https://github.com/jbreit88/sweater_weather/pulls?q=is%3Apr+reviewed-by%3Ajbreit88" title="Reviewed Pull Requests">👀</a></td>
   </tr>
 </table>
 
