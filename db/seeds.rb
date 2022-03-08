@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+created_users = FactoryBot.create_list(:user, 10)
+
+created_users.each do |user|
+  user.update!(api_key: SecureRandom.hex)
+end
