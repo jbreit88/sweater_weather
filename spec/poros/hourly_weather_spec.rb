@@ -32,11 +32,11 @@ RSpec.describe HourlyWeather do
 
   let(:weather) { HourlyWeather.new(data) }
 
-  it 'exists with attributes' do    
+  it 'exists with attributes' do
     expect(weather).to be_a HourlyWeather
 
     expect(weather.datetime).to be_a String
-    expect(weather.datetime).to eq('09:00:00')
+    expect(weather.datetime).to eq(Time.at(1646582400).strftime('%H:%M:%S'))
 
     expect(weather.temp).to be_a Float
     expect(weather.temp).to eq(23.04)

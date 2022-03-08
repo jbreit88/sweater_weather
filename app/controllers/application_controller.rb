@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :render_error_404
   rescue_from ActiveRecord::RecordInvalid, with: :render_error_400
+  rescue_from ActiveRecord::RecordNotUnique, with: :render_not_unique_error_400
 
   def render_error_404(error)
     render json: { error: { exception: error.to_s} }, status: 404
@@ -8,5 +9,9 @@ class ApplicationController < ActionController::API
 
   def render_error_400(error)
     render json: { error: { exception: error.to_s} }, status: 400
+  end
+
+  def render_not_unique_error_400
+    render json: { error: 'A user with that username already exists' }, status: 400
   end
 end
