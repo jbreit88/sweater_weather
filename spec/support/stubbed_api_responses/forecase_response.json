@@ -5,15 +5,15 @@
         "attributes": {
             "current_weather": {
                 "data": {
-                    "datetime": "2022-03-06T14:17:51.000-07:00",
-                    "sunrise": "2022-03-06T06:25:35.000-07:00",
-                    "sunset": "2022-03-06T17:57:04.000-07:00",
-                    "temp": 23.14,
-                    "feels_like": 16.66,
-                    "humidity": 81,
-                    "uvi": 1.79,
-                    "visibility": 6939,
-                    "conditions": "light snow",
+                    "datetime": "2022-03-07T14:16:35.000-07:00",
+                    "sunrise": "2022-03-07T06:24:02.000-07:00",
+                    "sunset": "2022-03-07T17:58:07.000-07:00",
+                    "temp": 30.22,
+                    "feels_like": 27.3,
+                    "humidity": 49,
+                    "uvi": 2.54,
+                    "visibility": 10000,
+                    "conditions": "snow",
                     "icon": "13d"
                 }
             },
@@ -21,71 +21,62 @@
                 "data": [
                     {
                         "time": "14:00:00",
-                        "temp": 23.14,
-                        "conditions": "light snow",
-                        "icon": "13d"
+                        "temp": 30.22,
+                        "conditions": "broken clouds",
+                        "icon": "04d"
                     },
                     {
                         "time": "15:00:00",
-                        "temp": 23.76,
-                        "conditions": "light snow",
-                        "icon": "13d"
+                        "temp": 30.36,
+                        "conditions": "broken clouds",
+                        "icon": "04d"
                     },
                     {
                         "time": "16:00:00",
-                        "temp": 24.3,
+                        "temp": 30.18,
                         "conditions": "light snow",
                         "icon": "13d"
                     },
                     {
                         "time": "17:00:00",
-                        "temp": 24.03,
-                        "conditions": "light snow",
-                        "icon": "13d"
+                        "temp": 30.07,
+                        "conditions": "broken clouds",
+                        "icon": "04d"
                     },
                     {
                         "time": "18:00:00",
-                        "temp": 23.49,
-                        "conditions": "light snow",
-                        "icon": "13n"
+                        "temp": 29.03,
+                        "conditions": "overcast clouds",
+                        "icon": "04n"
                     },
                     {
                         "time": "19:00:00",
-                        "temp": 23.31,
-                        "conditions": "light snow",
-                        "icon": "13n"
+                        "temp": 28.45,
+                        "conditions": "overcast clouds",
+                        "icon": "04n"
                     },
                     {
                         "time": "20:00:00",
-                        "temp": 23.16,
-                        "conditions": "light snow",
-                        "icon": "13n"
+                        "temp": 28.44,
+                        "conditions": "overcast clouds",
+                        "icon": "04n"
                     },
                     {
                         "time": "21:00:00",
-                        "temp": 22.32,
-                        "conditions": "light snow",
-                        "icon": "13n"
+                        "temp": 28.22,
+                        "conditions": "overcast clouds",
+                        "icon": "04n"
                     }
                 ]
             },
             "daily_weather": {
                 "data": [
                     {
-                        "date": "2022-03-06",
-                        "sunrise": "2022-03-06T06:25:35.000-07:00",
-                        "sunset": "2022-03-06T17:57:04.000-07:00",
-                        "max_temp": 26.17,
-                        "min_temp": 21.31,
-                        "conditions": "light snow",
-                        "icon": "13d"
-                    },
-                    {
                         "date": "2022-03-07",
                         "sunrise": "2022-03-07T06:24:02.000-07:00",
                         "sunset": "2022-03-07T17:58:07.000-07:00",
-                        "max_temp": 30.79,
-                        "min_temp": 19.2,
+                        "max_temp": 30.36,
+                        "min_temp": 17.71,
                         "conditions": "light snow",
                         "icon": "13d"
                     },
@@ -93,8 +84,8 @@
                         "date": "2022-03-08",
                         "sunrise": "2022-03-08T06:22:28.000-07:00",
                         "sunset": "2022-03-08T17:59:10.000-07:00",
-                        "max_temp": 37.63,
-                        "min_temp": 24.08,
+                        "max_temp": 37.81,
+                        "min_temp": 26.02,
                         "conditions": "clear sky",
                         "icon": "01d"
                     },
@@ -102,8 +93,8 @@
                         "date": "2022-03-09",
                         "sunrise": "2022-03-09T06:20:54.000-07:00",
                         "sunset": "2022-03-09T18:00:13.000-07:00",
-                        "max_temp": 28.87,
-                        "min_temp": 15.33,
+                        "max_temp": 29.52,
+                        "min_temp": 13.55,
                         "conditions": "snow",
                         "icon": "13d"
                     },
@@ -111,10 +102,19 @@
                         "date": "2022-03-10",
                         "sunrise": "2022-03-10T06:19:20.000-07:00",
                         "sunset": "2022-03-10T18:01:16.000-07:00",
-                        "max_temp": 27.36,
-                        "min_temp": 13.91,
+                        "max_temp": 20.7,
+                        "min_temp": 10.58,
                         "conditions": "light snow",
                         "icon": "13d"
+                    },
+                    {
+                        "date": "2022-03-11",
+                        "sunrise": "2022-03-11T06:17:45.000-07:00",
+                        "sunset": "2022-03-11T18:02:18.000-07:00",
+                        "max_temp": 33.84,
+                        "min_temp": 8.13,
+                        "conditions": "clear sky",
+                        "icon": "01d"
                     }
                 ]
             }

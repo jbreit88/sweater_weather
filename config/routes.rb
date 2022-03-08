@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :forecast, only: [:index]
       resources :backgrounds, only: [:index]
+      resources :users
       get '/book-search', to: 'book_search#index'
     end
   end
