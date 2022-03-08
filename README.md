@@ -202,6 +202,7 @@ Book information:
 | --- | --- | --- | --- |
 | GET | /forecast | String | Returns data for the current/daily/hourly weather at a specified location. | /api/v1/forecast?location={{city,state}} |
 
+Data sourced from the [Open Weather API](https://openweathermap.org/api)
 <details>
   <summary> JSON response examples </summary>
 
