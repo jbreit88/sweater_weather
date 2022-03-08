@@ -1,7 +1,7 @@
 class Api::V1::BookSearchController < ApplicationController
 
   def index
-    if params[:quantity] && params[:quantity].to_i >= 1
+    if params[:quantity] && !params[:quantity].empty? && params[:quantity].to_i >= 1
       # Pass in city/state search to get location
       location = MapQuestGeocodingFacade.search_location_by_city(params[:location])
 

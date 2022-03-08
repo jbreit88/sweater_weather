@@ -10,4 +10,8 @@ class ApplicationController < ActionController::API
     render json: { error: { exception: error.to_s} }, status: 400
   end
 
+  def render_error_401(error)
+    render json: { error: { exception: error.to_s} }, status: 401
+  end
+
 end
