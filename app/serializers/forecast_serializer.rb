@@ -1,6 +1,6 @@
 class ForecastSerializer
 
-  def self.format_forecast(location, current_weather, hourly_weather, daily_weather)
+  def self.format_forecast(location, current_weather, hourly_weather, daily_weather, number_of_days = 5, number_of_hours = 8)
 
     {
       data: {
@@ -22,7 +22,7 @@ class ForecastSerializer
             }
           },
           hourly_weather: {
-            data: hourly_weather.map do |weather|
+            data: hourly_weather.first(number_of_hours).map do |weather|
               {
                 time: weather.datetime,
                 temp: weather.temp,
@@ -32,7 +32,7 @@ class ForecastSerializer
             end
           },
           daily_weather:{
-            data: daily_weather.map do |weather|
+            data: daily_weather.first(number_of_days).map do |weather|
               {
                 date: weather.datetime,
                 sunrise: weather.sunrise,

@@ -28,5 +28,34 @@ RSpec.describe MapQuestGeocodingService, type: :service do
         expect(response[:results][0][:providedLocation][:location]).to eq(search)
       end
     end
+
+    describe 'get_route' do
+      it 'returns a response based on the origin and destinations' do
+        route = MapQuestGeocodingService.get_route('denver,co', 'pueblo,co')
+
+        expect(route).to be_a Hash
+        expect(route).to have_key(:route)
+        expect(route[:route]).to be_a Hash
+        expect(route[:route]).to have_key(:formattedTime)
+        expect(route[:route]).to have_key(:locations)
+        expect(route[:route][:locations]).to be_an Array
+
+        route[:route][:locations].each do |location|
+          expect(location).to have_key(:adminArea3)
+          expect(location).to have_key(:adminArea5)
+        end
+      end
+
+      it 'returns an impossible message if route cannot be done' do
+        route = MapQuestGeocodingService.get_route('london,uk', 'pueblo,co')
+
+        expect(route).to be_a Hash
+        expect(route).to have_key(:info)
+        expect(route[:info]).to be_a Hash
+        expect(route[:info]).to have_key(:messages)
+        expect(route[:info][:messages]).to be_a Array
+        expect(route[:info][:messages][0]).to be_a String
+      end
+    end
   end
 end

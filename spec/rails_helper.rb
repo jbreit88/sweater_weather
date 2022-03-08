@@ -79,6 +79,14 @@ RSpec.configure do |config|
 
     stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&location=Denver,CO&maxResults=1").to_return(body: location_response, status: 200)
 
+    route_response_impossible = File.read('./spec/support/stubbed_api_responses/map_quest_get_route_london_to_pueblo_response.json')
+
+    stub_request(:get, "http://www.mapquestapi.com/directions/v2/route?from=london,uk&key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&to=pueblo,co").to_return(body: route_response_impossible, status: 200)
+
+    route_response_possible = File.read('./spec/support/stubbed_api_responses/map_quest_get_route_denver_to_pueblo_response.json')
+
+    stub_request(:get, "http://www.mapquestapi.com/directions/v2/route?from=denver,co&key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&to=pueblo,co").to_return(body: route_response_possible, status: 200)
+
     # Stub Unsplash API calls
     image_response = File.read('./spec/support/stubbed_api_responses/unsplash_denver_image_search_response.json')
 
@@ -103,6 +111,14 @@ RSpec.configure do |config|
 
     stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&location=Denver,CO&maxResults=1").to_return(body: location_response, status: 200)
 
+    route_response_impossible = File.read('./spec/support/stubbed_api_responses/map_quest_get_route_london_to_pueblo_response.json')
+
+    stub_request(:get, "http://www.mapquestapi.com/directions/v2/route?from=london,uk&key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&to=pueblo,co").to_return(body: route_response_impossible, status: 200)
+
+    route_response_possible = File.read('./spec/support/stubbed_api_responses/map_quest_get_route_denver_to_pueblo_response.json')
+
+    stub_request(:get, "http://www.mapquestapi.com/directions/v2/route?from=denver,co&key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&to=pueblo,co").to_return(body: route_response_possible, status: 200)
+
     # Stub Unsplash API calls
     image_response = File.read('./spec/support/stubbed_api_responses/unsplash_denver_image_search_response.json')
 
@@ -126,6 +142,14 @@ RSpec.configure do |config|
     location_response = File.read('./spec/support/stubbed_api_responses/map_quest_geocoding_search_location_by_city.json')
 
     stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&location=Denver,CO&maxResults=1").to_return(body: location_response, status: 200)
+
+    location_response = File.read('./spec/support/stubbed_api_responses/map_quest_geocoding_search_location_by_city.json')
+
+    stub_request(:get, "http://www.mapquestapi.com/geocoding/v1/address?key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&location=Pueblo,CO&maxResults=1").to_return(body: location_response, status: 200)
+
+    route_response_possible = File.read('./spec/support/stubbed_api_responses/map_quest_get_route_denver_to_pueblo_response.json')
+
+    stub_request(:get, "http://www.mapquestapi.com/directions/v2/route?from=Denver,CO&key=#{ENV['MAP_QUEST_CONSUMER_KEY']}&to=Pueblo,CO").to_return(body: route_response_possible, status: 200)
 
     # Stub Weather Service API calls
     weather_response = File.read('./spec/support/stubbed_api_responses/weather_request_denver_co.json')

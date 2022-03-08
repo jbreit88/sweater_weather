@@ -14,7 +14,8 @@ RSpec.describe OpenWeatherFacade, type: :facade do
       it 'returns an array of hourly weather objects for next 8 hours of weather' do
         hourly_weather = OpenWeatherFacade.hourly_weather_by_coords(39.7385, -104.9849)
 
-        expect(hourly_weather.count).to eq(8)
+        # Number of responses is edited dynamically in serializers
+        expect(hourly_weather.count).to eq(48)
 
         hourly_weather.each do |weather|
           expect(weather).to be_a HourlyWeather
@@ -26,7 +27,8 @@ RSpec.describe OpenWeatherFacade, type: :facade do
       it 'returns an array of daily weather objects for next 5 days of weather' do
         daily_weather = OpenWeatherFacade.daily_weather_by_coords(39.7385, -104.9849)
 
-        expect(daily_weather.count).to eq(5)
+        # Number of days returned can be edited dynamically in serializers
+        expect(daily_weather.count).to eq(8)
 
         daily_weather.each do |weather|
           expect(weather).to be_a DailyWeather
