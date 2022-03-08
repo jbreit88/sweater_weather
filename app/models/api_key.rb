@@ -1,3 +1,5 @@
 class ApiKey < ApplicationRecord
-  belongs_to :bearer, polymorphic: true
+  belongs_to :user
+
+  validates_uniqueness_of :token
 end
