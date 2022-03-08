@@ -39,7 +39,25 @@ RSpec.describe 'The Backgrounds API', type: :request do
     end
 
     describe 'sad path' do
-      it 'returns an error message for incorrect params'
+      it 'returns an error message when no results are returned' do
+        get '/api/v1/backgrounds?location=jkubertbou'
+
+        error = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(404)
+
+        expect(error[:error][:exception]).to eq('Your search returned no results.')
+      end
+
+      it 'returns an error message when params are missing' do
+        get '/api/v1/backgrounds?location='
+
+        error = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(400)
+
+        expect(error[:error][:exception]).to eq('Please provide all neccessary params.')
+      end
     end
   end
 end

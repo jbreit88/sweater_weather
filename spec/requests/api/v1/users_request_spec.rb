@@ -19,7 +19,7 @@ RSpec.describe 'The Users API', type: :request do
         expect(response.status).to eq(201)
         expect(created_user.email).to eq(user_params[:email])
         expect(created_user.password_digest).to_not be_nil
-        expect(created_user.api_keys.count).to eq(1)
+        expect(created_user.api_key).to be_a String
       end
     end
 
@@ -55,7 +55,7 @@ RSpec.describe 'The Users API', type: :request do
         post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
 
         expect(response.status).to eq(400)
-        expect(response.body).to match('A user with that username already exists')
+        expect(response.body).to match('Email has already been taken')
       end
     end
   end

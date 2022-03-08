@@ -7,7 +7,7 @@ RSpec.describe 'The Weather API', type: :request do
         get '/api/v1/forecast?location=Denver,CO'
 
         weather = JSON.parse(response.body, symbolize_names: true)
-        
+
         expect(response).to be_successful
 
         expect(weather).to be_a Hash
@@ -94,7 +94,17 @@ RSpec.describe 'The Weather API', type: :request do
     end
 
     describe 'sad path' do
-      it 'returns an error message when params are missing or something'
+      describe 'No params sent' do
+        it 'returns an error status and message' do
+          get '/api/v1/forecast'
+
+          error = JSON.parse(response.body, symbolize_names: true)
+
+          expect(response.status).to eq(400)
+
+          expect(error[:error][:exception]).to eq('Please provide all neccessary params.')
+        end
+      end
     end
   end
 end

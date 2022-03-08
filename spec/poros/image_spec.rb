@@ -94,14 +94,25 @@ RSpec.describe Image do
   }
 
   let(:image) { Image.new(data) }
+  let(:not_image) { Image.new(nil) }
 
-  it 'exists with attributes' do
-    expect(image).to be_a Image
-    expect(image.original_website).to eq('https://unsplash.com')
-    expect(image.image_id).to eq("zSm5JPgNeuc")
-    expect(image.description).to eq("woman in white tank top sitting on brown wooden chair")
-    expect(image.url).to eq("https://images.unsplash.com/photo-1629163330223-c183571735a1?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDc5Mjh8MHwxfHNlYXJjaHwxfHxkZW52ZXIlMkNjb3xlbnwwfHx8fDE2NDY2Mjg0MTg&ixlib=rb-1.2.1&q=85")
-    expect(image.photographer).to eq("Taylor Daugherty")
-    expect(image.photographer_profile).to eq('https://unsplash.com/@tayloradaugherty')
+  describe 'happy path' do
+    it 'exists with attributes' do
+      expect(image).to be_a Image
+      expect(image.original_website).to eq('https://unsplash.com')
+      expect(image.image_id).to eq("zSm5JPgNeuc")
+      expect(image.description).to eq("woman in white tank top sitting on brown wooden chair")
+      expect(image.url).to eq("https://images.unsplash.com/photo-1629163330223-c183571735a1?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMDc5Mjh8MHwxfHNlYXJjaHwxfHxkZW52ZXIlMkNjb3xlbnwwfHx8fDE2NDY2Mjg0MTg&ixlib=rb-1.2.1&q=85")
+      expect(image.photographer).to eq("Taylor Daugherty")
+      expect(image.photographer_profile).to eq('https://unsplash.com/@tayloradaugherty')
+    end
+  end
+
+  describe 'sad path' do
+    it 'exists with an error attribute' do
+      expect(not_image).to be_a Image
+      expect(not_image.error).to eq('This is not an image')
+      expect(not_image.image_id).to be_nil
+    end
   end
 end

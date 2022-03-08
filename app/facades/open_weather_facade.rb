@@ -9,7 +9,7 @@ class OpenWeatherFacade
   def self.daily_weather_by_coords(latitude, longitude)
     daily_weather_data = OpenWeatherService.get_weather_by_coords(latitude, longitude)[:daily]
 
-    daily_weather_data.first(5).map do |data|
+    daily_weather_data.map do |data|
       DailyWeather.new(data)
     end
   end
@@ -17,7 +17,7 @@ class OpenWeatherFacade
   def self.hourly_weather_by_coords(latitude, longitude)
     hourly_weather_data = OpenWeatherService.get_weather_by_coords(latitude, longitude)[:hourly]
 
-    hourly_weather_data.first(8).map do |data|
+    hourly_weather_data.map do |data|
       HourlyWeather.new(data)
     end
   end

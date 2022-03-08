@@ -8,9 +8,7 @@ class UserSerializer
         type: 'users',
         attributes: {
           email: user.email,
-          api_keys: user.api_keys.map do |key|
-            key.token
-          end
+          api_keys: user.api_key
         }
       }
     }
